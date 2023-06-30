@@ -25,6 +25,8 @@ if( !class_exists('WDM_Verified_Badge_Icon')){
         public function define_public_hooks(){
             require_once plugin_dir_path( __FILE__ ).'public/class-wdm-verified-badge-icon-public.php';
             $public = new WDM_Verified_Badge_Icon_Public(plugin_dir_url( __FILE__ ));
+            add_action('wp_enqueue_scripts',array($public,'wdm_enqueue_styles'), 10, 0);
+            add_action('comment_author',array($public,'wdm_add_verification_bagdge_to_comments_authors'), 10, 2);
         }
     }
 }

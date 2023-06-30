@@ -16,7 +16,7 @@ if(!class_exists('WDM_Verified_Badge_Icon_Admin')){
             $this->plugin_name = $plugin_name;
         }
         /**
-         * requires and always check for the woocommerce plugin
+         * requires and always check for the woocommerce meberships plugin
          *
          * @return void
          */
@@ -31,6 +31,11 @@ if(!class_exists('WDM_Verified_Badge_Icon_Admin')){
                 }
             }
         }
+        /**
+         * shows admin notice when dependecies not met
+         *
+         * @return void
+         */
         public function wdm_admin_notice(){
             ?><div class="error"><p><?php _e( 'Sorry, but WDM WooCommerce Membership Verified Badges Plugin requires the WooCommerce Memberships to be installed and active.' ); ?></p></div><?php
         }
