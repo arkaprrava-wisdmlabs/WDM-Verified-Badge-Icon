@@ -2,19 +2,19 @@
 if(!class_exists('WDM_Verified_Badge_Icon_Public')){
     class WDM_Verified_Badge_Icon_Public{
         /**
-         * defines plugin directory url of the plugin
+         * defines plugin directory path of the plugin
          *
          * @var [String]
          */
-        protected $plugin_dir_url;
+        protected $plugin_dir_path;
         /**
          * defines class variables
          *
-         * @param [String] $plugin_dir_url
+         * @param [String] $plugin_dir_path
          */
         protected $users;
-        public function __construct($plugin_dir_url){
-            $this->$plugin_dir_url = $plugin_dir_url;
+        public function __construct($plugin_dir_path){
+            $this->plugin_dir_path = $plugin_dir_path;
         }
         public function wdm_enqueue_styles() {
             wp_enqueue_style( 'font-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css',array(), time(), 'all');
@@ -41,6 +41,12 @@ if(!class_exists('WDM_Verified_Badge_Icon_Public')){
                 return $result;
             }
             return $display_name;
+        }
+        public function wdm_override_woocommerce_template( $template, $template_name, $template_path ) {
+            if ( $template_name === 'myaccount/dashboard.php' ) {
+                $template = $this->plugin_dir_path . 'templates/dashboard.php';
+            }
+            return $template;
         }
     }
 }
