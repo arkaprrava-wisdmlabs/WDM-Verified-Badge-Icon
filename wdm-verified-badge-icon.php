@@ -20,6 +20,7 @@ if( !class_exists('WDM_Verified_Badge_Icon')){
         public function define_admin_hooks(){
             require_once plugin_dir_path( __FILE__ ).'admin/class-wdm-verified-badge-icon-admin.php';
             $admin = new WDM_Verified_Badge_Icon_Admin(plugin_basename( __FILE__ ));
+            add_action('admin_init',array($admin,'wdm_has_dependencies'), 10, 0);
         }
         public function define_public_hooks(){
             require_once plugin_dir_path( __FILE__ ).'public/class-wdm-verified-badge-icon-public.php';
